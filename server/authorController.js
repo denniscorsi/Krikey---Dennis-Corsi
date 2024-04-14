@@ -7,7 +7,8 @@ const { Pool } = pkg;
 dotenv.config();
 const DB_URL = process.env.DB_URL;
 const pool = new Pool({
-  connectionString: DB_URL
+  connectionString: DB_URL,
+  max: 5
 });
 
 const authorController = {};
@@ -15,7 +16,7 @@ const authorController = {};
 // Ensure that the author in the request query exists in the database.
 authorController.validateAuthor = async (req, res, next) => {
   const { author_name } = req.query;
-  console.log({ author_name });
+  // console.log({ author_name });
 
   if (author_name) {
     const queryResult = await pool.query(get_author, [author_name]);
