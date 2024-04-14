@@ -3,6 +3,7 @@ import AuthorCard from "./AuthorCard";
 
 const AuthorsPanel = () => {
   const [authorCards, setAuthorCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchTopAuthors = () => {
     fetch("/v1/authors/top")
@@ -10,6 +11,7 @@ const AuthorsPanel = () => {
       .then((authors) => {
         const cards = authors.map((author) => <AuthorCard key={author.email} author={author} />);
         setAuthorCards(cards);
+        setIsLoading(false);
       });
   };
 
@@ -17,7 +19,7 @@ const AuthorsPanel = () => {
 
   return (
     <>
-      <div className="authors-panel">{authorCards}</div>
+      <div className="authors-panel">{isLoading ? <p>Loading Authors...</p> : authorCards}</div>
     </>
   );
 };

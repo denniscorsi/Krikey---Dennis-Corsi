@@ -4,7 +4,7 @@ const MainPanel = () => {
   return (
     <div className="main-panel">
       <div className="panel-top">
-        <h4>----</h4>
+        <img src="src/assets/arrow.png" />
         <h4>Top 10 Authors</h4>
         <div></div>
       </div>

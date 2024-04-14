@@ -3,6 +3,7 @@
 }
 
 .container {
+  margin: 100px auto;
   display: flex;
   justify-content: center;
 }
@@ -16,7 +17,13 @@
 .panel-top {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0px 12px;
+}
+
+.panel-top img {
+  width: 24px;
+  height: 20px;
 }
 
 .authors-panel {
@@ -58,4 +65,35 @@
 
 .remove-btn {
   width: 26px;
+}
+
+#nav-bar {
+  padding: 10px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#nav-bar ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+#nav-bar li {
+  margin: 0px 20px;
+}
+
+#nav-bar button {
+  background: linear-gradient(89.82deg, #4b42d7 0.12%, #12acba 99.82%);
+  color: white;
+  border-radius: 10px;
+  padding: 10px 15px;
+  height: 40px;
+  border: none;
+}
+
+#nav-bar button:hover {
+  background: linear-gradient(89.82deg, #382fb8 0.12%, #078894 99.82%);
+  cursor: pointer;
 }

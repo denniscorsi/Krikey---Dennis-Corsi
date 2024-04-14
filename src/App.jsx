@@ -1,14 +1,18 @@
 import { useState } from "react";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import AuthorsPanel from "./components/AuthorsPanel";
+import MainPanel from "./components/MainPanel";
+import NavBar from "./components/NavBar";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <AuthorsPanel />
+      <NavBar />
+      <div className="container">
+        <MainPanel />
+      </div>
     </>
   );
 }
