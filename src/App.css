@@ -105,12 +105,18 @@
   }
   .container {
     width: auto;
-    min-width: 430px;
+    min-width: 800px;
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 630px) {
   .container {
-    min-width: 800px;
+    margin: 30px auto;
+    justify-content: start;
+  }
+  #nav-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
