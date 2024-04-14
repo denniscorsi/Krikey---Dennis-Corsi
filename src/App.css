@@ -6,6 +6,7 @@
   margin: 100px auto;
   display: flex;
   justify-content: center;
+  width: 1200px;
 }
 
 .main-panel {
@@ -96,4 +97,20 @@
 #nav-bar button:hover {
   background: linear-gradient(89.82deg, #382fb8 0.12%, #078894 99.82%);
   cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  .menu-option {
+    display: none;
+  }
+  .container {
+    width: auto;
+    min-width: 430px;
+  }
+}
+
+@media (max-width: 850px) {
+  .container {
+    min-width: 800px;
+  }
 }
