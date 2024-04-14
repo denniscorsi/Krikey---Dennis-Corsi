@@ -2,7 +2,7 @@
 
 Using autocannon, I tested 2000 total requests to the API with 100 concurrent connections.
 
-`autocannon -c 100 -a 2000 'http://localhost:3000/authors/top/?author_name=John%20Doe'`
+`autocannon -c 100 -a 2000 'http://localhost:3000/v1/authors/top/?author_name=John%20Doe'`
 
 Before implementing the cache:
 

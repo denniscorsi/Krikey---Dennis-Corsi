@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.get(
-  "/authors/top",
+  "/v1/authors/top",
   authorController.validateAuthor,
   authorController.getTopAuthors,
   (req, res) => {
