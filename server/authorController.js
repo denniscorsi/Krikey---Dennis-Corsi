@@ -1,10 +1,10 @@
 import pkg from "pg";
-const { Pool } = pkg;
 import { top_10_query, get_author } from "./queries.js";
 import dotenv from "dotenv";
-dotenv.config();
 
 // Connect to PostgreSQL database
+const { Pool } = pkg;
+dotenv.config();
 const DB_URL = process.env.DB_URL;
 const pool = new Pool({
   connectionString: DB_URL
@@ -12,11 +12,11 @@ const pool = new Pool({
 
 const authorController = {};
 
+// Ensure that the author in the request query exists in the database.
 authorController.validateAuthor = async (req, res, next) => {
   const { author_name } = req.query;
   console.log({ author_name });
 
-  // Verify validity of author name if one is included in the query
   if (author_name) {
     const queryResult = await pool.query(get_author, [author_name]);
     const author = queryResult.rows[0];
@@ -30,13 +30,14 @@ authorController.validateAuthor = async (req, res, next) => {
   return next();
 };
 
+// Get the top 10 authors from the database
 authorController.getTopAuthors = async (req, res, next) => {
   const queryResult = await pool.query(top_10_query);
 
-  const topAuthors = queryResult.rows; // This in an array of author objects
+  const topAuthors = queryResult.rows;
   res.locals.topAuthors = topAuthors;
 
-  next();
+  return next();
 };
 
 export default authorController;

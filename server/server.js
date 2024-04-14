@@ -1,12 +1,12 @@
-import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import express from "express";
+
 import authorController from "./authorController.js";
-dotenv.config();
 
 // Get environmental variables
+dotenv.config();
 const PORT = process.env.PORT || 3000;
-const DB_URL = process.env.DB_URL;
 
 // Initialize express app
 const app = express();
@@ -21,7 +21,7 @@ app.get(
   }
 );
 
-// Catch-all endpoint to send a 404 message
+// Catch-all endpoint to send a 404 status
 app.use("*", (req, res) => {
   res.sendStatus(404);
 });
