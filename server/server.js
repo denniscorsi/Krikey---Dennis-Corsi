@@ -12,6 +12,12 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 app.use(bodyParser.json());
 
+// Handle requests for static files
+app.use(express.static("dist"));
+app.get("/", (req, res) => {
+  res.sendFile("dist/index.html");
+});
+
 app.get(
   "/v1/authors/top",
   authorController.validateAuthor,

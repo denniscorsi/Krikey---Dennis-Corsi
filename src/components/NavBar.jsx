@@ -3,19 +3,19 @@ const NavBar = () => {
     <div id="nav-bar">
       <ul>
         <li>
-          <img src="src/assets/Krikey-AI-Logo.png" />
+          <img src="/Krikey-AI-Logo.png" />
         </li>
         <li>
-          How to Animate <img src="src/assets/expand.png" />
+          How to Animate <img src="/expand.png" />
         </li>
         <li>
-          Business <img src="src/assets/expand.png" />
+          Business <img src="/expand.png" />
         </li>
         <li>
-          Education <img src="src/assets/expand.png" />
+          Education <img src="/expand.png" />
         </li>
         <li>
-          Social Media <img src="src/assets/expand.png" />
+          Social Media <img src="/expand.png" />
         </li>
         <li>Pricing</li>
         <li>About Us</li>
