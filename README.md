@@ -1,8 +1,17 @@
-# React + Vite
+#### API Optimization Results
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Using autocannon, I tested 2000 total requests to the API with 100 concurrent connections.
 
-Currently, two official plugins are available:
+`autocannon -c 100 -a 2000 'http://localhost:3000/authors/top/?author_name=John%20Doe'`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before implementing the cache:
+
+- The total time was 42 seconds
+- The max latency was 3168 ms
+- The average latency was 2054 ms
+
+After implementing the cache:
+
+- The total time was 3 seconds
+- The max latency was 2878 ms
+- The average latency was 130 ms
