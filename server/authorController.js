@@ -22,7 +22,7 @@ authorController.validateAuthor = async (req, res, next) => {
   const { author_name } = req.query;
 
   if (author_name) {
-    let author = null;
+    let author;
 
     // Check cache for author
     const cachedData = cache.get(author_name);
@@ -48,9 +48,20 @@ authorController.validateAuthor = async (req, res, next) => {
 
 // Get the top 10 authors from the database
 authorController.getTopAuthors = async (req, res, next) => {
-  const queryResult = await pool.query(top_10_query);
+  let topAuthors;
 
-  const topAuthors = queryResult.rows;
+  // check cache for top 10 author results
+  const cachedData = cache.get("top10authors");
+
+  // If the data is not in the cache, query the database
+  if (!cachedData) {
+    const queryResult = await pool.query(top_10_query);
+    topAuthors = queryResult.rows;
+    cache.set("top10authors", topAuthors);
+  } else {
+    topAuthors = cachedData;
+  }
+
   res.locals.topAuthors = topAuthors;
 
   return next();
