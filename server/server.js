@@ -21,4 +21,20 @@ app.get(
   }
 );
 
+// Catch-all endpoint to send a 404 message
+app.use("*", (req, res) => {
+  res.sendStatus(404);
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+  const defaultError = {
+    log: "Express error handler caught an unknown middleware error",
+    status: 500,
+    message: "Internal Server Error"
+  };
+  const error = Object.assign({}, defaultError, err);
+  res.status(error.status).json(error.message);
+});
+
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

@@ -8,3 +8,8 @@ ON authors.id = books.author_id
 GROUP BY authors.name, authors.email
 ORDER BY "Sales Total" DESC
 LIMIT 10`;
+
+export const get_author = `
+SELECT * 
+FROM authors
+WHERE name = $1`;

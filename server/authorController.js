@@ -1,6 +1,6 @@
 import pkg from "pg";
 const { Pool } = pkg;
-import { top_10_query } from "./queries.js";
+import { top_10_query, get_author } from "./queries.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -12,10 +12,22 @@ const pool = new Pool({
 
 const authorController = {};
 
-authorController.validateAuthor = (req, res, next) => {
+authorController.validateAuthor = async (req, res, next) => {
   const { author_name } = req.query;
   console.log({ author_name });
-  next();
+
+  // Verify validity of author name if one is included in the query
+  if (author_name) {
+    const queryResult = await pool.query(get_author, [author_name]);
+    const author = queryResult.rows[0];
+    if (!author) {
+      return next({
+        message: `${author_name} does not exist in database`,
+        status: 404
+      });
+    }
+  }
+  return next();
 };
 
 authorController.getTopAuthors = async (req, res, next) => {
