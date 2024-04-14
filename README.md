@@ -1,25 +1,25 @@
 #### Where to Find Things
 
-- Part 1: SQL Challenge - You can finnd the three SQL queries in the file `SQL_Queries.sql`
+- Part 1: SQL Challenge - You can find the three SQL queries in the file `SQL_Queries.sql`
 - Part 2A: API Endpoint - I built the API server with Express. The routing can be found in `server/server.js`. The business logic can be found in the middleware file `server/authorController.js`
-- Part 2B: API Performance - To efficiently manage many simultaneous users, I implemented a cache (NodeCache) in `server/authorController.js`. Also, since the free postgres service I am using only allows 5 concurrent connections, I set the pool configurations to only allow 5 active connections. The pool will handle queueing additional connections so that the dataase doesn't throw an error.
+- Part 2B: API Performance - To efficiently manage many simultaneous users, I implemented a cache (NodeCache) in `server/authorController.js`. Also, since the free postgres service I am using only allows 5 concurrent connections, I set the pool configurations to only allow 5 active connections. The pool will handle queueing additional connections so that the database doesn't throw an error.
 - Part 3: Build & Deploy - The react components can be found in `src/components`
 
 #### To Run Locally
 
 1. In the root directory, add a file named `.env` and paste into it the line of code I provided via email. This is required to connect to the database.
 2. In your terminal, navigate to the project root and execute the command `npm install`
-3. Once install is complete, execute `npm run dev`
-4. In a browser, navigate to the url provided by the terminal. It will likely be http://localhost:5173/
+3. Once the installation is complete, execute `npm run dev`
+4. In a browser, navigate to the URL provided by the terminal. It will likely be http://localhost:5173/
 
 #### Deployed Application
 
 This application can be accessed at https://krikey-17d558d3f9d8.herokuapp.com/
-I deployed the app using Heroku, via the following steps:
+I deployed the app using Heroku via the following steps:
 
 1. Add a "start" script to the package.json.
 2. Create a new application in my Heroku account.
-3. Connect this github repo in the Heroku app settings.
+3. Connect this GitHub repo in the Heroku app settings.
 4. Add the DB_URL key and value to the env configurations.
 5. Select the main branch and click "deploy".
 
