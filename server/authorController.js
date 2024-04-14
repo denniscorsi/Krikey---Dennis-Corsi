@@ -1,3 +1,4 @@
+import NodeCache from "node-cache";
 import pkg from "pg";
 import { top_10_query, get_author } from "./queries.js";
 import dotenv from "dotenv";
@@ -11,16 +12,30 @@ const pool = new Pool({
   max: 5
 });
 
+// Configure cache
+const cache = new NodeCache({ stdTTL: 60 });
+
 const authorController = {};
 
 // Ensure that the author in the request query exists in the database.
 authorController.validateAuthor = async (req, res, next) => {
   const { author_name } = req.query;
-  // console.log({ author_name });
 
   if (author_name) {
-    const queryResult = await pool.query(get_author, [author_name]);
-    const author = queryResult.rows[0];
+    let author = null;
+
+    // Check cache for author
+    const cachedData = cache.get(author_name);
+
+    // If the data is not in the cache, query the database
+    if (!cachedData) {
+      const queryResult = await pool.query(get_author, [author_name]);
+      author = queryResult.rows[0];
+      cache.set(author_name, author);
+    } else {
+      author = cachedData;
+    }
+
     if (!author) {
       return next({
         message: `${author_name} does not exist in database`,
